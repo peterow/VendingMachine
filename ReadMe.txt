@@ -1,0 +1,3 @@
+I have spent about 3 hours on this test, so have now stopped since this is beyond the recommended time.
+
+I have done several commits to show my TDD cycles: create a test that fails, make test pass, ....

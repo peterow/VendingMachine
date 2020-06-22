@@ -49,23 +49,6 @@ namespace VendingMachineKata
             return coinType;
         }
 
-        private void InsertCoin(CoinType coinType)
-        {
-            if (coinType == CoinType.Dime)
-            {
-                _amountInDollars += 0.1M;
-            }
-            else if (coinType == CoinType.Quarter)
-            {
-                _amountInDollars += 0.25M;
-            }
-            else if (coinType == CoinType.Nickel)
-            {
-                _amountInDollars += 0.05M;
-            }
-
-        }
-
         public bool PressButton(int button)
         {
             var product = _products[button];
@@ -81,6 +64,23 @@ namespace VendingMachineKata
             _displayText = string.Format("PRICE: {0}", _products[button].Price);
             
             return false;
+        }
+
+        private void InsertCoin(CoinType coinType)
+        {
+            if (coinType == CoinType.Dime)
+            {
+                _amountInDollars += 0.1M;
+            }
+            else if (coinType == CoinType.Quarter)
+            {
+                _amountInDollars += 0.25M;
+            }
+            else if (coinType == CoinType.Nickel)
+            {
+                _amountInDollars += 0.05M;
+            }
+
         }
     }
 }
