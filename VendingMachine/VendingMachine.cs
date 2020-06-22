@@ -10,6 +10,7 @@ namespace VendingMachineKata
         private decimal _amountInDollars = 0;
         private ICoinIdentifier _coinIdentifier;
         private readonly List<Product> _products;
+        private string _displayText;
 
         public VendingMachine(ICoinIdentifier coinIdentifier, System.Collections.Generic.List<Product> products)
         {
@@ -17,7 +18,17 @@ namespace VendingMachineKata
             this._products = products;
         }
 
-        public string Display { get { return _amountInDollars > 0 ? string.Format("${0:0.00}", _amountInDollars) :"INSERT COIN"; } }
+        public string Display 
+        {
+            get
+            {
+                return 
+                        !string.IsNullOrEmpty(_displayText) ? _displayText :
+                        _amountInDollars > 0 ?
+                        string.Format("${0:0.00}", _amountInDollars) :
+                        "INSERT COIN";
+            } 
+        }
 
         
 
@@ -52,8 +63,9 @@ namespace VendingMachineKata
 
         public bool PressButton(int button)
         {
-
-            return false;
+            _displayText = "THANKYOU";
+            
+            return true;
         }
     }
 }
