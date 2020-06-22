@@ -19,5 +19,12 @@ namespace VendingMachineKata.Tests
         {
             Assert.AreEqual("INSERT COIN", _testObject.Display);
         }
+
+        [TestMethod]
+        public void OneDimeInserted_Display_ShowsCorrectAmount()
+        {
+            _testObject.InsertCoin(CoinType.Dime);
+            Assert.AreEqual("$0.10", _testObject.Display);
+        }
     }
 }
