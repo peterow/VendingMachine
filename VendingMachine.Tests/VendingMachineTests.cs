@@ -1,0 +1,23 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using VendingMachineKata;
+
+namespace VendingMachineKata.Tests
+{
+    [TestClass]
+    public class VendingMachineTests
+    {
+        private VendingMachine _testObject;
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            _testObject = new VendingMachine();
+        }
+
+        [TestMethod]
+        public void NoCoinsInserted_DisplaySays_INSERTCOIN()
+        {
+            Assert.AreEqual("INSERT COIN", _testObject.Display);
+        }
+    }
+}
