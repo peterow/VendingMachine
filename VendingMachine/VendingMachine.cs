@@ -19,6 +19,10 @@ namespace VendingMachineKata
             {
                 _amountInDollars += 0.25M;
             }
+            else if (coinType == CoinType.Nickel)
+            {
+                _amountInDollars += 0.05M;
+            }
         }
     }
 }
