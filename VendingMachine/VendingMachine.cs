@@ -9,6 +9,8 @@ namespace VendingMachineKata
         
         public string Display { get { return _amountInDollars > 0 ? string.Format("${0:0.00}", _amountInDollars) :"INSERT COIN"; } }
 
+        public decimal ReturnAmount { get; }
+
         public void InsertCoin(CoinType coinType)
         {
             if (coinType == CoinType.Dime)
