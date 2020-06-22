@@ -9,7 +9,14 @@ namespace VendingMachineKata
         
         public string Display { get { return _amountInDollars > 0 ? string.Format("${0:0.00}", _amountInDollars) :"INSERT COIN"; } }
 
-        public decimal ReturnAmount { get; }
+
+        private decimal _returnAmount;
+
+        public decimal ReturnAmount
+        {
+            get { return _returnAmount; }
+        }
+
 
         public void InsertCoin(CoinType coinType)
         {
@@ -24,6 +31,10 @@ namespace VendingMachineKata
             else if (coinType == CoinType.Nickel)
             {
                 _amountInDollars += 0.05M;
+            }
+            else if (coinType == CoinType.Penny)
+            {
+                _returnAmount += 0.01M;
             }
         }
     }
