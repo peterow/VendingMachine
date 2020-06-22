@@ -114,6 +114,7 @@ namespace VendingMachineKata.Tests
 
             Assert.IsTrue(result);
             Assert.AreEqual("THANKYOU", _testObject.Display);
+
         }
 
         [TestMethod]
