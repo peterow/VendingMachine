@@ -1,12 +1,19 @@
 ﻿
 using System;
+using VendingMachineKata.Interfaces;
 
 namespace VendingMachineKata
 {
     public class VendingMachine
     {
         private decimal _amountInDollars = 0;
-        
+        private ICoinIdentifier _coinIdentifier;
+
+        public VendingMachine(ICoinIdentifier coinIdentifier)
+        {
+            this._coinIdentifier = coinIdentifier;
+        }
+
         public string Display { get { return _amountInDollars > 0 ? string.Format("${0:0.00}", _amountInDollars) :"INSERT COIN"; } }
 
         public void InsertCoin(CoinType coinType)
@@ -28,7 +35,7 @@ namespace VendingMachineKata
 
         public void InsertObject(int weight, int size)
         {
-            
+            _coinIdentifier.IdentifyCoin(weight, size);
         }
     }
 }

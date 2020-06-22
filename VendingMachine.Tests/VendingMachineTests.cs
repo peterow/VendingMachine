@@ -14,8 +14,9 @@ namespace VendingMachineKata.Tests
         [TestInitialize]
         public void SetUp()
         {
-            _testObject = new VendingMachine();
             _coinIdentifier = NSubstitute.Substitute.For<ICoinIdentifier>();
+            _testObject = new VendingMachine(_coinIdentifier);
+            
         }
 
         [TestMethod]
