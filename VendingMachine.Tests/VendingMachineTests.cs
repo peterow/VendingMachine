@@ -115,5 +115,20 @@ namespace VendingMachineKata.Tests
             Assert.IsTrue(result);
             Assert.AreEqual("THANKYOU", _testObject.Display);
         }
+
+        [TestMethod]
+        public void PressButton_FundsINsufficient_AssociatedProductNOTSold()
+        {
+            _coinIdentifier.IdentifyCoin(_weight, _size).Returns(CoinType.Quarter);
+
+            //1 quarter - not enough for anything.
+            _testObject.InsertObject(_weight, _size);
+
+            const int button = 1;
+            var result = _testObject.PressButton(button);
+
+            Assert.IsFalse(result);
+            Assert.AreEqual(string.Format("PRICE: {0}", _products[button].Price), _testObject.Display);
+        }
     }
 }
