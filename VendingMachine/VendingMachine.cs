@@ -11,7 +11,14 @@ namespace VendingMachineKata
 
         public void InsertCoin(CoinType coinType)
         {
-            _amountInDollars += 0.1M;
+            if (coinType == CoinType.Dime)
+            {
+                _amountInDollars += 0.1M;
+            }
+            else if (coinType == CoinType.Quarter)
+            {
+                _amountInDollars += 0.25M;
+            }
         }
     }
 }
