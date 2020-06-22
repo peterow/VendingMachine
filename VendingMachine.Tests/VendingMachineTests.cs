@@ -26,5 +26,12 @@ namespace VendingMachineKata.Tests
             _testObject.InsertCoin(CoinType.Dime);
             Assert.AreEqual("$0.10", _testObject.Display);
         }
+
+        [TestMethod]
+        public void OneQuarterInserted_Display_ShowsCorrectAmount()
+        {
+            _testObject.InsertCoin(CoinType.Quarter);
+            Assert.AreEqual("$0.25", _testObject.Display);
+        }
     }
 }
