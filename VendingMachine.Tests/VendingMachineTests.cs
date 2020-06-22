@@ -131,5 +131,23 @@ namespace VendingMachineKata.Tests
             Assert.IsFalse(result);
             Assert.AreEqual(string.Format("PRICE: {0}", _products[button].Price), _testObject.Display);
         }
+
+        
+        [TestMethod]
+        public void BuyTwoProducts_FundsRunOutAfterFirstPurchase_SecondPurchaseFails()
+        {
+            _coinIdentifier.IdentifyCoin(_weight, _size).Returns(CoinType.Quarter);
+
+            _testObject.InsertObject(_weight, _size);
+            _testObject.InsertObject(_weight, _size);
+
+            const int button = 1;
+            _testObject.PressButton(button);
+
+            var result = _testObject.PressButton(button);
+
+            Assert.IsFalse(result);
+            Assert.AreEqual(string.Format("PRICE: {0}", _products[button].Price), _testObject.Display);
+        }
     }
 }
