@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using VendingMachineKata.Interfaces;
 
 namespace VendingMachineKata
@@ -8,10 +9,12 @@ namespace VendingMachineKata
     {
         private decimal _amountInDollars = 0;
         private ICoinIdentifier _coinIdentifier;
+        private readonly List<Product> _products;
 
-        public VendingMachine(ICoinIdentifier coinIdentifier)
+        public VendingMachine(ICoinIdentifier coinIdentifier, System.Collections.Generic.List<Product> products)
         {
             this._coinIdentifier = coinIdentifier;
+            this._products = products;
         }
 
         public string Display { get { return _amountInDollars > 0 ? string.Format("${0:0.00}", _amountInDollars) :"INSERT COIN"; } }
@@ -45,6 +48,12 @@ namespace VendingMachineKata
                 _amountInDollars += 0.05M;
             }
 
+        }
+
+        public bool PressButton(int button)
+        {
+
+            return false;
         }
     }
 }

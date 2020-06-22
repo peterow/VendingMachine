@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System.Collections.Generic;
 using VendingMachineKata;
 using VendingMachineKata.Interfaces;
 
@@ -12,13 +13,21 @@ namespace VendingMachineKata.Tests
         private ICoinIdentifier _coinIdentifier;
         private int _weight = 1;
         private int _size = 2;
+        private List<Product> _products;
 
         [TestInitialize]
         public void SetUp()
         {
             _coinIdentifier = NSubstitute.Substitute.For<ICoinIdentifier>();
-            _testObject = new VendingMachine(_coinIdentifier);
             
+            _products = new List<Product>()
+            {
+                new Product{ Name = "cola", Price = 1},
+                new Product{ Name = "chips", Price = 0.5M},
+                new Product{ Name = "candy", Price = 0.65M},
+            };
+
+            _testObject = new VendingMachine(_coinIdentifier, _products);
         }
 
         [TestMethod]
@@ -91,5 +100,20 @@ namespace VendingMachineKata.Tests
             Assert.AreEqual(expectedResult, result);
         }
 
+
+        [TestMethod]
+        public void PressButton_FundsSufficient_AssociatedProductSold()
+        {
+            _coinIdentifier.IdentifyCoin(_weight, _size).Returns(CoinType.Quarter);
+
+            //2 quarters - enough for chips.
+            _testObject.InsertObject(_weight, _size);
+            _testObject.InsertObject(_weight, _size);
+            
+            var result = _testObject.PressButton(1);
+
+            Assert.IsTrue(result);
+            Assert.AreEqual("THANKYOU", _testObject.Display);
+        }
     }
 }
