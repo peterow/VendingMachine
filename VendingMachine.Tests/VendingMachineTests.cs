@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using VendingMachineKata;
+using VendingMachineKata.Interfaces;
 
 namespace VendingMachineKata.Tests
 {
@@ -7,11 +9,13 @@ namespace VendingMachineKata.Tests
     public class VendingMachineTests
     {
         private VendingMachine _testObject;
+        private ICoinIdentifier _coinIdentifier;
 
         [TestInitialize]
         public void SetUp()
         {
             _testObject = new VendingMachine();
+            _coinIdentifier = NSubstitute.Substitute.For<ICoinIdentifier>();
         }
 
         [TestMethod]
@@ -48,6 +52,16 @@ namespace VendingMachineKata.Tests
             Assert.AreEqual("INSERT COIN", _testObject.Display);
         }
 
+
+        [TestMethod]
+        public void InsertObject_CoinIdentifier_Called()
+        {
+            int weight = 1;
+            int size = 2;
+            _testObject.InsertObject(weight, size);
+
+            _coinIdentifier.Received().IdentifyCoin(weight, size);
+        }
         
     }
 }

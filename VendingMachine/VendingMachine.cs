@@ -1,5 +1,5 @@
-﻿using System;
-using System.Globalization;
+﻿
+using System;
 
 namespace VendingMachineKata
 {
@@ -8,10 +8,6 @@ namespace VendingMachineKata
         private decimal _amountInDollars = 0;
         
         public string Display { get { return _amountInDollars > 0 ? string.Format("${0:0.00}", _amountInDollars) :"INSERT COIN"; } }
-
-
-        
-
 
         public void InsertCoin(CoinType coinType)
         {
@@ -27,6 +23,11 @@ namespace VendingMachineKata
             {
                 _amountInDollars += 0.05M;
             }
+            
+        }
+
+        public void InsertObject(int weight, int size)
+        {
             
         }
     }
