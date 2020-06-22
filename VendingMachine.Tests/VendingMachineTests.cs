@@ -63,6 +63,19 @@ namespace VendingMachineKata.Tests
 
             _coinIdentifier.Received().IdentifyCoin(weight, size);
         }
-        
+
+        [TestMethod]
+        public void InsertObject_ReturnValue_SameAsThatSuppliedByCoinIdentifer()
+        {
+            int weight = 1;
+            int size = 2;
+            var expectedResult = CoinType.Quarter;
+            _coinIdentifier.IdentifyCoin(weight, size).Returns(expectedResult);
+
+            var result = _testObject.InsertObject(weight, size);
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
     }
 }

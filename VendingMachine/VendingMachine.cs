@@ -33,9 +33,11 @@ namespace VendingMachineKata
             
         }
 
-        public void InsertObject(int weight, int size)
+        public CoinType InsertObject(int weight, int size)
         {
             _coinIdentifier.IdentifyCoin(weight, size);
+
+            return CoinType.Dime;
         }
     }
 }
