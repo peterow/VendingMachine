@@ -10,6 +10,8 @@ namespace VendingMachineKata.Tests
     {
         private VendingMachine _testObject;
         private ICoinIdentifier _coinIdentifier;
+        private int _weight = 1;
+        private int _size = 2;
 
         [TestInitialize]
         public void SetUp()
@@ -28,28 +30,40 @@ namespace VendingMachineKata.Tests
         [TestMethod]
         public void OneDimeInserted_Display_ShowsCorrectAmount()
         {
-            _testObject.InsertCoin(CoinType.Dime);
+            _coinIdentifier.IdentifyCoin(_weight, _size).Returns(CoinType.Dime);
+
+            _testObject.InsertObject(_weight, _size);
+
             Assert.AreEqual("$0.10", _testObject.Display);
         }
 
         [TestMethod]
         public void OneQuarterInserted_Display_ShowsCorrectAmount()
         {
-            _testObject.InsertCoin(CoinType.Quarter);
+            _coinIdentifier.IdentifyCoin(_weight, _size).Returns(CoinType.Quarter);
+
+            _testObject.InsertObject(_weight, _size);
+
             Assert.AreEqual("$0.25", _testObject.Display);
         }
 
         [TestMethod]
         public void OneNickelInserted_Display_ShowsCorrectAmount()
         {
-            _testObject.InsertCoin(CoinType.Nickel);
+            _coinIdentifier.IdentifyCoin(_weight, _size).Returns(CoinType.Nickel);
+
+            _testObject.InsertObject(_weight, _size);
+
             Assert.AreEqual("$0.05", _testObject.Display);
         }
 
         [TestMethod]
         public void UnknownCoinInserted_Display_DoesNOTChange()
         {
-            _testObject.InsertCoin(CoinType.Unknown);
+            _coinIdentifier.IdentifyCoin(_weight, _size).Returns(CoinType.Unknown);
+
+            _testObject.InsertObject(_weight, _size);
+
             Assert.AreEqual("INSERT COIN", _testObject.Display);
         }
 
