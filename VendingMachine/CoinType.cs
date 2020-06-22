@@ -9,6 +9,6 @@ namespace VendingMachineKata
         Quarter,
         Dime,
         Nickel,
-        Penny
+        Unknown
     }
 }

@@ -42,17 +42,12 @@ namespace VendingMachineKata.Tests
         }
 
         [TestMethod]
-        public void OnePennyInserted_Display_DoesNOTChange()
+        public void UnknownCoinInserted_Display_DoesNOTChange()
         {
-            _testObject.InsertCoin(CoinType.Penny);
+            _testObject.InsertCoin(CoinType.Unknown);
             Assert.AreEqual("INSERT COIN", _testObject.Display);
         }
 
-        [TestMethod]
-        public void OnePennyInserted_ReturnAmount_EqualsOnePenny()
-        {
-            _testObject.InsertCoin(CoinType.Penny);
-            Assert.AreEqual(0.01M, _testObject.ReturnAmount);
-        }
+        
     }
 }
