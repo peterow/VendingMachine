@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VendingMachineKata.Interfaces;
 
 namespace VendingMachineKata
@@ -12,25 +10,32 @@ namespace VendingMachineKata
         private readonly List<Product> _products;
         private string _displayText;
         
-        public VendingMachine(ICoinIdentifier coinIdentifier, System.Collections.Generic.List<Product> products)
+        public VendingMachine(ICoinIdentifier coinIdentifier, List<Product> products)
         {
-            this._coinIdentifier = coinIdentifier;
-            this._products = products;
+            _coinIdentifier = coinIdentifier;
+            _products = products;
         }
 
         public string Display 
         {
             get
             {
-                return 
-                        !string.IsNullOrEmpty(_displayText) ? _displayText :
-                        _amountInDollars > 0 ?
-                        string.Format("${0:0.00}", _amountInDollars) :
-                        "INSERT COIN";
+                if (!string.IsNullOrEmpty(_displayText))
+                {
+                    string result = _displayText;
+                    _displayText = null;
+                    return result;
+                }
+                else if (_amountInDollars > 0)
+                {
+                    return string.Format("${0:0.00}", _amountInDollars);
+                }
+                else
+                {
+                    return "INSERT COIN";
+                }
             } 
         }
-
-        
 
         public CoinType InsertObject(int weight, int size)
         {

@@ -115,7 +115,10 @@ namespace VendingMachineKata.Tests
             Assert.IsTrue(result);
             Assert.AreEqual("THANKYOU", _testObject.Display);
 
+            var secondReadOfDisplay = _testObject.Display;
+            Assert.AreNotEqual("THANKYOU", secondReadOfDisplay);
         }
+
 
         [TestMethod]
         public void PressButton_FundsINsufficient_AssociatedProductNOTSold()
@@ -130,6 +133,9 @@ namespace VendingMachineKata.Tests
 
             Assert.IsFalse(result);
             Assert.AreEqual(string.Format("PRICE: {0}", _products[button].Price), _testObject.Display);
+
+            var secondReadOfDisplay = _testObject.Display;
+            Assert.AreNotEqual(string.Format("PRICE: {0}", _products[button].Price), secondReadOfDisplay);
         }
 
         
@@ -149,5 +155,7 @@ namespace VendingMachineKata.Tests
             Assert.IsFalse(result);
             Assert.AreEqual(string.Format("PRICE: {0}", _products[button].Price), _testObject.Display);
         }
+
+        
     }
 }
