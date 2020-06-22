@@ -66,6 +66,8 @@ namespace VendingMachineKata
             var product = _products[button];
             if (_amountInDollars >= product.Price)
             {
+                _amountInDollars -= product.Price;
+
                 _displayText = "THANKYOU";
 
                 return true;
