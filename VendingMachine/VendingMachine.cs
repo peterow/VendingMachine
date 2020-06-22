@@ -16,6 +16,20 @@ namespace VendingMachineKata
 
         public string Display { get { return _amountInDollars > 0 ? string.Format("${0:0.00}", _amountInDollars) :"INSERT COIN"; } }
 
+        
+
+        public CoinType InsertObject(int weight, int size)
+        {
+            var coinType = _coinIdentifier.IdentifyCoin(weight, size);
+
+            if (coinType != CoinType.Unknown)
+            {
+                InsertCoin(coinType);
+            }
+
+            return coinType;
+        }
+
         private void InsertCoin(CoinType coinType)
         {
             if (coinType == CoinType.Dime)
@@ -30,16 +44,7 @@ namespace VendingMachineKata
             {
                 _amountInDollars += 0.05M;
             }
-            
-        }
 
-        public CoinType InsertObject(int weight, int size)
-        {
-            var coinType = _coinIdentifier.IdentifyCoin(weight, size);
-
-            InsertCoin(coinType);
-
-            return coinType;
         }
     }
 }
